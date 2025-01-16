@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-const needBG = [1,2,3,4,5];
-const videoSection = [];
+const needBG:number[] = [1,2,3,4,5];
+const videoSection:number[] = [];
 export const SectionContainer = ({
   children,
   sectionIdx = 1,
@@ -17,16 +17,18 @@ export const SectionContainer = ({
           className={`text-[#F90C02] font-medium relative flex flex-col w-dvw lg:w-full lg:h-[calc(100dvh-4rem)] lg:snap-center ${sectionIdx > 10 ? "lg:overflow-y-scroll" : "lg:overflow-hidden"} ${className}`}
       >
         {children}
-        {2 === 1 ? (
-            <div className="bg-[#020417] absolute inset-0 -z-10 w-full hidden lg:block grid h-screen w-screen grid-cols-6 grid-rows-6">
-                {Array.from({ length: 36 }).map((_, idx) => (
-                    <img
-                        src="/fire_chicken_char.png"
-                        alt="Fire Chicken"
-                    />
-                ))}
-            </div>
-        ) : (
+        {
+        //   2 === 1 ? (
+        //     <div className="bg-[#020417] absolute inset-0 -z-10 w-full hidden lg:block grid h-screen w-screen grid-cols-6 grid-rows-6">
+        //         {Array.from({ length: 36 }).map((_, idx) => (
+        //             <img
+        //                 src="/fire_chicken_char.png"
+        //                 alt="Fire Chicken"
+        //             />
+        //         ))}
+        //     </div>
+        // ) :
+            (
             <>
             {sectionIdx && needBG.includes(sectionIdx) ? (
                 <>

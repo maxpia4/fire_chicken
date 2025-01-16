@@ -20,7 +20,7 @@ export const Header = () => {
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
 
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = (sectionId : string) => {
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
@@ -33,11 +33,10 @@ export const Header = () => {
         <div className="mobile-menu absolute top-0 left-0 w-full h-screen bg-gray-800 bg-opacity-75 z-50 flex flex-col justify-center items-center">
           <nav className="text-white space-y-4">
             <ul>
-              {MOBILE_MENU.map(({ label, url, isNewTab }, i) => (
+              {MOBILE_MENU.map(({ label, url }, i) => (
                 <li key={`mobile-nav-${i}-${label}`}>
                   <a
                     href={url}
-                    target={isNewTab ? "_blank" : "_self"}
                     className="text-xl"
                   >
                     {label}
@@ -75,7 +74,7 @@ export const Header = () => {
         </a>
         <nav className={twMerge("desktop", "flex-1")}>
           <ul className="flex flex-row justify-center gap-32">
-            {NAV_LIST.map(({ label, url, isNewTab }, i) => (
+            {NAV_LIST.map(({ label, url }, i) => (
               <li
                 className={"hover:scale-125 transition-all duration-300 "}
                 key={`header-nav-${i}-${label}`}
@@ -83,7 +82,6 @@ export const Header = () => {
                 <a
                   // href={url}
                   onClick={() => scrollToSection(url)}
-                  target={isNewTab ? "_blank" : ''}
                   className={twMerge(
                     url ? "cursor-pointer" : "cursor-default coming-soon",
                   )}
