@@ -13,7 +13,7 @@ const NAV_LIST = [
   { label: "ROADMAP", url: "section-5" },
 ];
 
-const MOBILE_MENU = [{ label: "HOME", url: "/" }, ...NAV_LIST];
+const MOBILE_MENU = [...NAV_LIST];
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,13 +30,13 @@ export const Header = () => {
   return (
     <>
       {isMenuOpen && (
-        <div className="mobile-menu absolute top-0 left-0 w-full h-screen bg-gray-800 bg-opacity-75 z-50 flex flex-col justify-center items-center">
+        <div className="mobile-menu fixed top-0 left-0 w-full h-screen bg-gray-800 bg-opacity-75 z-50 flex flex-col justify-center items-center">
           <nav className="text-white space-y-4">
             <ul>
               {MOBILE_MENU.map(({ label, url }, i) => (
                 <li key={`mobile-nav-${i}-${label}`}>
                   <a
-                    href={url}
+                    onClick={() => scrollToSection(url)}
                     className="text-xl"
                   >
                     {label}
@@ -100,17 +100,17 @@ export const Header = () => {
         {/*>*/}
         {/*  Support*/}
         {/*</button>*/}
-        <button
-          onClick={toggleMenu}
-          className={twMerge("mobile", "flex-none w-5 h-5 relative")}
-        >
-          <Image
-            src="/burger-menu-icon.png"
-            alt="burger menu for open navigation"
-            fill
-            sizes="2.5rem"
-          />
-        </button>
+        {/*<button*/}
+        {/*  onClick={toggleMenu}*/}
+        {/*  className={twMerge("mobile", "flex-none w-5 h-5 relative")}*/}
+        {/*>*/}
+        {/*  <Image*/}
+        {/*    src="/burger-menu-icon.png"*/}
+        {/*    alt="burger menu for open navigation"*/}
+        {/*    fill*/}
+        {/*    sizes="2.5rem"*/}
+        {/*  />*/}
+        {/*</button>*/}
 
         <Tooltip anchorSelect=".coming-soon" content="Coming soon!" />
       </header>
