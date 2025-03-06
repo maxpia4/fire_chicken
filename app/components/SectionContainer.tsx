@@ -18,7 +18,7 @@ export const SectionContainer = ({
       className={`text-[#F90C02] ${sectionIdx === 1 ? "h-auto" : "min-h-full" } font-medium relative flex flex-1 flex-col w-dvw lg:w-full lg:h-[calc(100dvh-3.9rem)] lg:snap-center ${sectionIdx > 10 ? "lg:overflow-y-scroll" : "lg:overflow-hidden"} ${className}`}
     >
       <div
-        className="absolute inset-0 -z-10 block"
+        className="sm:hidden absolute inset-0 -z-10 block"
         style={{
           backgroundImage: `url('/section1.png')`,
           backgroundRepeat: "repeat",

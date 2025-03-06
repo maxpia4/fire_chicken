@@ -31,7 +31,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
           {/*<Soon/>*/}
-          <Header />
+          <div className="hidden sm:block">
+            <Header />
+          </div>
           {children}
       </body>
     </html>

@@ -55,16 +55,25 @@ export const Header = () => {
       )}
       <header
         className={twMerge(
-          "flex flex-row justify-between items-center bg-[#611111] backdrop-blur-xl text-white",
-          "h-12 px-5 py-2",
+          "flex flex-row justify-center sm:justify-between items-center bg-[#241E1E] sm:bg-[#611111] backdrop-blur-xl text-white",
+          "h-[90px] px-5 py-2",
           "lg:h-16 lg:px-64",
         )}
       >
         <a
           href={"/"}
-          className="cursor-pointer flex-none w-16 h-full relative lg:w-[12.5rem]"
+          className="cursor-pointer w-[187px] sm:flex-none sm:w-16 h-full relative lg:w-[12.5rem]"
         >
           <Image
+            className="block sm:hidden"
+            objectFit={"contain"}
+            src="/mobile/logo-mobile.png"
+            alt="logo of fire chicken"
+            fill
+            unoptimized
+          />
+          <Image
+            className="hidden sm:block"
             objectFit={"contain"}
             src="/logo-header.png"
             alt="logo of fire chicken"
