@@ -22,6 +22,7 @@ export const SectionContainer = ({
         style={{
           backgroundImage: `url('/section1.png')`,
           backgroundRepeat: "repeat",
+          // backgroundRepeat: "repeat",
           backgroundSize: "contain",
           backgroundPosition: "top",
           width: "100%",
