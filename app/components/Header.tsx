@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { Tooltip } from "react-tooltip";
 import { twMerge } from "tailwind-merge";
 
@@ -15,7 +15,7 @@ const NAV_LIST = [
 
 const MOBILE_MENU = [...NAV_LIST];
 
-export const Header = () => {
+export const Header = ({activeSection, setActiveSection}:any) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
@@ -26,6 +26,7 @@ export const Header = () => {
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
+
 
   return (
     <>
@@ -55,13 +56,16 @@ export const Header = () => {
       )}
       <header
         className={twMerge(
-          "flex flex-row justify-center sm:justify-between items-center bg-[#241E1E] sm:bg-[#611111] backdrop-blur-xl text-white",
-          "h-[90px] px-5 py-2",
-          "lg:h-16 lg:px-64",
+          "flex flex-row justify-center sm:justify-between items-center sm:bg-[#611111] backdrop-blur-xl text-white",
+          "h-[90px] px-5 py-2 fixed top-0 left-0 w-full z-50",
+          "lg:h-16 lg:px-64 sm:relative transition-all duration-1000 ease-in-out",
+          activeSection !== "Home" ? "bg-[#9C0404]" : "bg-[#241E1E] "
         )}
       >
         <a
-          href={"/"}
+          onClick={() => {
+            activeSection ? setActiveSection(0) : window.location.href = "/";
+          }}
           className="cursor-pointer w-[187px] sm:flex-none sm:w-16 h-full relative lg:w-[12.5rem]"
         >
           <Image
