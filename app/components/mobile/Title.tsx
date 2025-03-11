@@ -54,9 +54,9 @@ export const Title = ({sections, activeSection, setActiveSection}:any) => {
         >
           <div
             className={twMerge(
-              "flex items-center justify-center h-[61px] rounded-[4px] transition-all duration-1000 ease-in-out",
+              "flex items-center justify-center h-[61px] transition-all duration-1000 ease-in-out",
               activeSection === sections.indexOf("Home")
-                ? "bg-[#990000] w-[297px]"
+                ? "bg-[#990000] w-[297px] rounded-[4px]"
                 : "bg-black w-full"
             )}
           >

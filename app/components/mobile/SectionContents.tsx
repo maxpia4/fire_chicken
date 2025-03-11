@@ -71,7 +71,7 @@ export const SectionContents = ({
           >
             <div onClick={() => setIsLoadMapClicked(true)}>
               <video
-                ref={videoRef}
+                loop
                 autoPlay
                 muted
                 playsInline

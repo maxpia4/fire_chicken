@@ -11,7 +11,7 @@ interface BackgroundProps {
 const BackgroundComponent = ({ activeSection, sections, videoRef }: BackgroundProps) => {
   const backgroundMap: any = {
     Home: (
-      <div className="absolute -z-10 w-full h-screen bg-black" />
+      <div className="absolute -z-10 w-full h-full bg-black" />
     ),
     Tokenomics: (
       <video
@@ -19,6 +19,7 @@ const BackgroundComponent = ({ activeSection, sections, videoRef }: BackgroundPr
         autoPlay
         muted
         playsInline
+        preload="auto"
         className="absolute inset-0 -z-10 w-full h-full object-fill lg:block"
       >
         <source src={`/mobile/bg_Tokenomics.mp4`} type="video/mp4" />
@@ -33,7 +34,12 @@ const BackgroundComponent = ({ activeSection, sections, videoRef }: BackgroundPr
   };
 
   const sectionKey = sections[activeSection];
-  return backgroundMap[sectionKey] || backgroundMap.default;
+  return (
+    <>
+      <div className="absolute w-full h-full bg-black -z-20"/>
+      {backgroundMap[sectionKey] || backgroundMap.default}
+    </>
+  );
 };
 
 // React.memo로 감싸기

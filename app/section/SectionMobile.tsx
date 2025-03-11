@@ -6,6 +6,8 @@ import {Header} from "@/app/components/Header";
 import {Title} from "@/app/components/mobile/Title";
 import {FloatingBtn} from "@/app/components/mobile/FloatingBtn";
 import {SectionContents} from "@/app/components/mobile/SectionContents";
+import Head from "next/head";
+import {twMerge} from "tailwind-merge";
 
 export const SectionMobile = () => {
   const sections = ["Home", "About", "HowToGet", "Tokenomics", "Roadmap"];
@@ -14,11 +16,12 @@ export const SectionMobile = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null); // 비디오 요소 참조
   const scrollContainerRef = useRef<HTMLDivElement | null>(null); // 스크롤 컨테이너 참조
   const [showTokenomics, setShowTokenomics] = useState(false);
-  const [isLoadMapClicked, setIsLoadMapClicked] = useState(false)
+  const [isLoadMapClicked, setIsLoadMapClicked] = useState(false);
+  const [isFirstRendering, setIsFirstRendering] = useState(true)
 
   // 상단 버튼 중앙 정렬
   useEffect(() => {
-    let timer: NodeJS.Timeout | undefined;
+    let timer: NodeJS.Timeout | number | undefined;
 
     // 버튼 클릭 시 중앙 정렬 함수
     const scrollToCenter = (index: number) => {
@@ -44,9 +47,10 @@ export const SectionMobile = () => {
     };
 
     if(activeSection !== sections.indexOf("Home")) {
+      setIsFirstRendering(false);
       timer = setTimeout(() => {
         scrollToCenter(activeSection);
-      }, 10);
+      }, isFirstRendering? 500 : 10);
     }
     setIsLoadMapClicked(false);
     return () => {
@@ -58,7 +62,7 @@ export const SectionMobile = () => {
 
   // Tokenomics 섹션에서만 Tokenomics 이미지 보이기
   useEffect(() => {
-    let timer: NodeJS.Timeout | undefined;
+    let timer: NodeJS.Timeout | number | undefined;
     if(activeSection === sections.indexOf("Tokenomics")) {
       timer = setTimeout(() => {
         return setShowTokenomics(true);
@@ -108,37 +112,49 @@ export const SectionMobile = () => {
   }, [activeSection, isFirstPlay]); // activeSection 또는 isFirstPlay 변경 시 실행
 
   return (
-    <div className="w-full h-full">
-      <Header activeSection={sections[activeSection]} setActiveSection={setActiveSection}/>
-      <div className="h-[90px]"/>
-      <div className="relative h-[calc(100%-90px)]">
-        {/*배경*/}
-        <Background activeSection={activeSection} sections={sections} videoRef={videoRef as any} />
+    <>
+      <Head>
+        <link rel="preload" href="/mobile/bg_Tokenomics.mp4" as="video" type="video/mp4"/>
+        <link rel="preload" href="/mobile/char_RoadMap.webm" as="video" type="video/webm"/>
+        <link rel="preload" href="/mobile/bg_basic.png" as="image"/>
+      </Head>
+      <div className="w-full h-full">
+        <Header activeSection={sections[activeSection]} setActiveSection={setActiveSection}/>
+        <div className="h-[90px]"/>
+        <div className={twMerge(
+          activeSection !== sections.indexOf("Tokenomics") ? "bg-black" : "",
+          "relative h-[calc(100%-90px)]"
+          )}
+        >
+          {/*배경*/}
+          <Background activeSection={activeSection} sections={sections} videoRef={videoRef as any} />
 
-        {/*상단 메뉴버튼*/}
-        <FloatingBtn
-          setActiveSection={setActiveSection}
-          activeSection={activeSection}
-          sections={sections}
-          scrollContainerRef={scrollContainerRef}
-          setIsFirstPlay={setIsFirstPlay}
-        />
+          {/*상단 메뉴버튼*/}
+          <FloatingBtn
+            setActiveSection={setActiveSection}
+            activeSection={activeSection}
+            sections={sections}
+            scrollContainerRef={scrollContainerRef}
+            setIsFirstPlay={setIsFirstPlay}
+          />
 
-        {/*섹션 별 컨텐츠*/}
-        <Title
-          sections={sections}
-          activeSection={activeSection}
-          setActiveSection={setActiveSection}
-        />
-        <SectionContents
-          sections={sections}
-          activeSection={activeSection}
-          showTokenomics={showTokenomics}
-          setIsLoadMapClicked={setIsLoadMapClicked}
-          isLoadMapClicked={isLoadMapClicked}
-          videoRef={videoRef}
-        />
+          {/*섹션 별 컨텐츠*/}
+          <Title
+            sections={sections}
+            activeSection={activeSection}
+            setActiveSection={setActiveSection}
+          />
+          <SectionContents
+            sections={sections}
+            activeSection={activeSection}
+            showTokenomics={showTokenomics}
+            setIsLoadMapClicked={setIsLoadMapClicked}
+            isLoadMapClicked={isLoadMapClicked}
+            videoRef={videoRef}
+          />
+        </div>
       </div>
-    </div>
+    </>
+
   );
 };
