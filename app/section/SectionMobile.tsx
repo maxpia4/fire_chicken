@@ -111,7 +111,7 @@ export const SectionMobile = () => {
     <div className="w-full h-full">
       <Header activeSection={sections[activeSection]} setActiveSection={setActiveSection}/>
       <div className="h-[90px]"/>
-      <div className="relative h-full">
+      <div className="relative h-[calc(100%-90px)]">
         {/*배경*/}
         <Background activeSection={activeSection} sections={sections} videoRef={videoRef as any} />
 
