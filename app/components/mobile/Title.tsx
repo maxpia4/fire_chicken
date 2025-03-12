@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 
 export const Title = ({sections, activeSection, setActiveSection}:any) => {
 
-  const [activeTop, setActiveTop] = useState<string>("top-[70px]")
+  const [activeTop, setActiveTop] = useState<string>("top-[10%]")
 
   // 섹션별 설정 정의
   const sectionConfigs = [
@@ -19,10 +19,10 @@ export const Title = ({sections, activeSection, setActiveSection}:any) => {
     let timer: any;
     if(activeSection !== sections.indexOf("Home")) {
       timer = setTimeout(() => {
-        setActiveTop("sticky top-[90px]");
+        setActiveTop("sticky top-[10%]");
       }, 1000);
     } else {
-      setActiveTop("top-[70px]");
+      setActiveTop("top-[10%]");
     }
     return () => {
       if (timer) {
@@ -35,7 +35,7 @@ export const Title = ({sections, activeSection, setActiveSection}:any) => {
     <>
       <div className={twMerge(
         // "absolute",
-        activeSection === sections.indexOf("Home")?"h-[70px]":"h-[70px]",
+        activeSection === sections.indexOf("Home")?"h-[10%]":"h-[10%]",
       )}/>
       {sectionConfigs.map((config,index) => (
         <div
@@ -56,13 +56,13 @@ export const Title = ({sections, activeSection, setActiveSection}:any) => {
             className={twMerge(
               "flex items-center justify-center h-[61px] transition-all duration-1000 ease-in-out",
               activeSection === sections.indexOf("Home")
-                ? "bg-[#990000] w-[297px] rounded-[4px]"
+                ? "bg-[#990000] w-[70%] rounded-[4px]"
                 : "bg-black w-full"
             )}
           >
             <img
               src={`/mobile/title_${config.name}.png`}
-              className={twMerge("h-[19px]")}
+              className={twMerge("h-[32%]")}
             />
           </div>
         </div>

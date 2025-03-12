@@ -17,7 +17,26 @@ export const SectionMobile = () => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null); // 스크롤 컨테이너 참조
   const [showTokenomics, setShowTokenomics] = useState(false);
   const [isLoadMapClicked, setIsLoadMapClicked] = useState(false);
-  const [isFirstRendering, setIsFirstRendering] = useState(true)
+  const [isFirstRendering, setIsFirstRendering] = useState(true);
+  const [videoStart, setVideoStart] = useState(false);
+
+
+  useEffect(() => {
+    console.log("video start");
+    let timer: NodeJS.Timeout | number | undefined;
+    if(activeSection === sections.indexOf("Tokenomics")) {
+      timer = setTimeout(() => {
+        return setShowTokenomics(true);
+      }, 1200);
+    } else {
+      setShowTokenomics(false);
+    }
+    return () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+    };
+  }, [videoStart, activeSection]);
 
   // 상단 버튼 중앙 정렬
   useEffect(() => {
@@ -60,23 +79,6 @@ export const SectionMobile = () => {
     };
   }, [activeSection]);
 
-  // Tokenomics 섹션에서만 Tokenomics 이미지 보이기
-  useEffect(() => {
-    let timer: NodeJS.Timeout | number | undefined;
-    if(activeSection === sections.indexOf("Tokenomics")) {
-      timer = setTimeout(() => {
-        return setShowTokenomics(true);
-      }, 1200);
-    } else {
-      setShowTokenomics(false);
-    }
-    return () => {
-      if (timer) {
-        clearTimeout(timer);
-      }
-    };
-  }, [activeSection]);
-
   // 비디오 재생 제어
   useEffect(() => {
     const video = videoRef.current;
@@ -84,7 +86,7 @@ export const SectionMobile = () => {
     if (
       !video ||
       !(activeSection === sections.indexOf("Tokenomics") || activeSection === sections.indexOf("Roadmap"))
-    ) return; // Tokenomics 섹션이 아니면 실행 안 함
+    ) return; // Tokenomics,Roadmap 섹션이 아니면 실행 안 함
 
     const capTime =  activeSection === sections.indexOf("Tokenomics") ? 10 : 2.3;
 
@@ -97,17 +99,22 @@ export const SectionMobile = () => {
       video.currentTime = capTime;
       video.play();
     };
+    const handlePlay = () => {
+      setVideoStart(true);
+    };
 
     // 첫 재생이면 0초부터, 이후는 10초부터 시작
     video.currentTime = isFirstPlay ? 0 : capTime;
-    video.play();
+    video.play().catch((error) => console.error("Play failed:", error));
 
     // 이벤트 리스너 추가
     video.addEventListener("ended", handleEnded);
+    video.addEventListener("play", handlePlay);
 
     // 클린업: 이벤트 리스너 제거
     return () => {
       video.removeEventListener("ended", handleEnded);
+      video.removeEventListener("play", handlePlay);
     };
   }, [activeSection, isFirstPlay]); // activeSection 또는 isFirstPlay 변경 시 실행
 
@@ -115,15 +122,15 @@ export const SectionMobile = () => {
     <>
       <Head>
         <link rel="preload" href="/mobile/bg_Tokenomics.mp4" as="video" type="video/mp4"/>
-        <link rel="preload" href="/mobile/char_RoadMap.webm" as="video" type="video/webm"/>
+        <link rel="preload" href="/mobile/char_RoadMap2.webm" as="video" type="video/webm"/>
         <link rel="preload" href="/mobile/bg_basic.png" as="image"/>
       </Head>
       <div className="w-full h-full">
         <Header activeSection={sections[activeSection]} setActiveSection={setActiveSection}/>
-        <div className="h-[90px]"/>
+        <div className="h-[10%] bg-black"/>
         <div className={twMerge(
           activeSection !== sections.indexOf("Tokenomics") ? "bg-black" : "",
-          "relative h-[calc(100%-90px)]"
+          "relative h-[calc(90%)]"
           )}
         >
           {/*배경*/}

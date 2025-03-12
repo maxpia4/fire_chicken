@@ -15,7 +15,7 @@ export const SectionContents = ({
   return (
     <>
       {activeSection === sections.indexOf("About") && (
-        <div className="absolute w-full top-[calc(18%)] flex items-center justify-center px-[16px] animate-fadeIn">
+        <div className="absolute w-full top-[20%] flex items-center justify-center px-[16px] animate-fadeIn">
           <img
             src={`/mobile/About_contents.png`}
             // className={twMerge("flex-1")}
@@ -24,7 +24,7 @@ export const SectionContents = ({
       )}
 
       {activeSection === sections.indexOf("HowToGet") && (
-        <div className="absolute w-full top-[calc(18%)] flex items-center justify-center px-[35px] animate-fadeIn">
+        <div className="absolute w-full top-[20%] flex items-center justify-center px-[35px] animate-fadeIn">
           <img
             src={`/mobile/HowToGet_contents.png`}
           />
@@ -45,13 +45,13 @@ export const SectionContents = ({
         <>
           <div
             onClick={() => setIsLoadMapClicked(true)}
-            className={twMerge("absolute w-full top-[calc(20%)] flex items-center justify-center animate-fadeIn ",
+            className={twMerge("absolute w-full top-[25%] flex items-center justify-center animate-fadeIn ",
               isLoadMapClicked ? "hidden" : ""
             )}
           >
             <img
               src={`/mobile/RoadMap01_contents.png`}
-              className={twMerge("w-[328px] h-[92px]")}
+              className={twMerge("w-[90%] h-[90%]")}
             />
           </div>
           <div
@@ -66,21 +66,25 @@ export const SectionContents = ({
           <div
             className={twMerge(
               "absolute w-full h-full flex justify-center animate-fadeIn transition-all duration-1000 ease-in-out",
-              !isLoadMapClicked ? "top-[25%]" : "top-[15%]"
+              !isLoadMapClicked ? "top-[28%]" : "top-[18%]"
             )}
           >
-            <div onClick={() => setIsLoadMapClicked(true)}>
+            <div
+              onClick={() => setIsLoadMapClicked(true)}
+              className={twMerge(
+                "transition-all duration-1000 ease-in-out",
+                !isLoadMapClicked ? "w-[90%]" : "w-[40%]")}
+            >
               <video
+                // ref={videoRef}
                 loop
                 autoPlay
                 muted
                 playsInline
                 preload="auto"
-                className={twMerge("transition-all duration-1000 ease-in-out",
-                  !isLoadMapClicked ? "w-[344px]" : "w-[159px]"
-                )}
+                className="w-full"
               >
-                <source src={`/mobile/char_RoadMap.webm`}/>
+                <source src={`/mobile/char_RoadMap2.webm`}/>
               </video>
             </div>
           </div>
