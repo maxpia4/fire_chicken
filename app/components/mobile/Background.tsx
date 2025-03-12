@@ -11,7 +11,7 @@ interface BackgroundProps {
 const BackgroundComponent = ({ activeSection, sections, videoRef }: BackgroundProps) => {
   const backgroundMap: any = {
     Home: (
-      <div className="absolute -z-10 w-full h-full bg-black" />
+      <></>
     ),
     Tokenomics: (
       <video
@@ -24,6 +24,9 @@ const BackgroundComponent = ({ activeSection, sections, videoRef }: BackgroundPr
       >
         <source src={`/mobile/bg_Tokenomics.mp4`} type="video/mp4" />
       </video>
+    ),
+    Roadmap: (
+      <></>
     ),
     default: (
       <img

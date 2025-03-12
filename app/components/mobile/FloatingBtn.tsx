@@ -14,7 +14,7 @@ export const FloatingBtn = ({
     <>
       {activeSection !== sections.indexOf("Home") && (
         <div ref={scrollContainerRef as any}
-             className="absolute flex justify-between items-center overflow-x-auto space-x-4 w-full h-[10%] px-4">
+             className="z-10 absolute flex justify-between items-center overflow-x-auto space-x-4 w-full h-[10%] px-4">
           {sections.map((section:string, index:number) => {
             if (section === "Home") return null;
             return (

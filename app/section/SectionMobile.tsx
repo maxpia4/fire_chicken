@@ -122,17 +122,16 @@ export const SectionMobile = () => {
     <>
       <Head>
         <link rel="preload" href="/mobile/bg_Tokenomics.mp4" as="video" type="video/mp4"/>
+        <link rel="preload" href="/mobile/bg_Roadmap.mp4" as="video" type="video/mp4"/>
         <link rel="preload" href="/mobile/char_RoadMap2.webm" as="video" type="video/webm"/>
+        <link rel="preload" href="/mobile/char_RoadMap3.webm" as="video" type="video/webm"/>
+        <link rel="preload" href="/mobile/char_RoadMap4.webm" as="video" type="video/webm"/>
         <link rel="preload" href="/mobile/bg_basic.png" as="image"/>
       </Head>
       <div className="w-full h-full">
         <Header activeSection={sections[activeSection]} setActiveSection={setActiveSection}/>
         <div className="h-[10%] bg-black"/>
-        <div className={twMerge(
-          activeSection !== sections.indexOf("Tokenomics") ? "bg-black" : "",
-          "relative h-[calc(90%)]"
-          )}
-        >
+        <div className="relative h-[calc(90%)]">
           {/*배경*/}
           <Background activeSection={activeSection} sections={sections} videoRef={videoRef as any} />
 
