@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@phantom/wallet-sdk": "^0.0.23",
+    "@solana/spl-token": "^0.4.13",
+    "@solana/web3.js": "^1.98.0",
     "next": "^15.1.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
