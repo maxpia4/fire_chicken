@@ -121,7 +121,7 @@ export const SectionMobile = () => {
   return (
     <>
       <Head>
-        <link rel="preload" href="/mobile/bg_Tokenomics.mp4" as="video" type="video/mp4"/>
+        <link rel="preload" href="/mobile/bg_Tokenomics.webm" as="video" type="video/webm"/>
         <link rel="preload" href="/mobile/bg_Roadmap.mp4" as="video" type="video/mp4"/>
         <link rel="preload" href="/mobile/char_RoadMap2.webm" as="video" type="video/webm"/>
         <link rel="preload" href="/mobile/char_RoadMap3.webm" as="video" type="video/webm"/>
