@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import {InfiniteVideo} from "@/app/components/mobile/InfiniteVideo";
+import Image from 'next/image';
 
 interface BackgroundProps {
   activeSection: number;
@@ -14,25 +16,28 @@ const BackgroundComponent = ({ activeSection, sections, videoRef }: BackgroundPr
       <></>
     ),
     Tokenomics: (
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        playsInline
-        preload="auto"
-        className="absolute inset-0 -z-10 w-full h-full object-fill lg:block"
-      >
-        <source src={`/mobile/bg_Tokenomics.mp4`} type="video/mp4" />
-      </video>
+      <>
+        <InfiniteVideo
+          src={`/mobile/bg_Tokenomics.webm`}
+          // src={`/mobile/bg_Test2.mp4`}
+          type={"video/mp4"}
+          loopTime = {10}
+          activeSection = {activeSection}
+          className ="absolute inset-0 -z-10 w-full h-full object-fill lg:block"
+        />
+      </>
     ),
     Roadmap: (
       <></>
     ),
     default: (
-      <img
+      <Image
+        priority
+        width={"1125"}
+        height={"3678"}
+        style={{objectFit: "cover", position: "absolute", width: "100%", height: "auto"}}
         src={`/mobile/bg_basic.png`}
-        className="flex-1 absolute"
-      />
+        alt={"bg_basic"}/>
     ),
   };
 

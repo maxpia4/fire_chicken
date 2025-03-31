@@ -18,11 +18,9 @@ export const SectionMobile = () => {
   const [showTokenomics, setShowTokenomics] = useState(false);
   const [isLoadMapClicked, setIsLoadMapClicked] = useState(false);
   const [isFirstRendering, setIsFirstRendering] = useState(true);
-  const [videoStart, setVideoStart] = useState(false);
 
 
   useEffect(() => {
-    console.log("video start");
     let timer: NodeJS.Timeout | number | undefined;
     if(activeSection === sections.indexOf("Tokenomics")) {
       timer = setTimeout(() => {
@@ -33,10 +31,10 @@ export const SectionMobile = () => {
     }
     return () => {
       if (timer) {
-        clearTimeout(timer);
+        clearTimeout(timer as number);
       }
     };
-  }, [videoStart, activeSection]);
+  }, [activeSection]);
 
   // 상단 버튼 중앙 정렬
   useEffect(() => {
@@ -74,49 +72,10 @@ export const SectionMobile = () => {
     setIsLoadMapClicked(false);
     return () => {
       if (timer) {
-        clearTimeout(timer);
+        clearTimeout(timer as number);
       }
     };
   }, [activeSection]);
-
-  // 비디오 재생 제어
-  useEffect(() => {
-    const video = videoRef.current;
-
-    if (
-      !video ||
-      !(activeSection === sections.indexOf("Tokenomics") || activeSection === sections.indexOf("Roadmap"))
-    ) return; // Tokenomics,Roadmap 섹션이 아니면 실행 안 함
-
-    const capTime =  activeSection === sections.indexOf("Tokenomics") ? 10 : 2.3;
-
-    const handleEnded = () => {
-      if (isFirstPlay) {
-        // 첫 재생 후 상태 변경
-        setIsFirstPlay(false);
-      }
-      // 중간부터 재생 시작
-      video.currentTime = capTime;
-      video.play();
-    };
-    const handlePlay = () => {
-      setVideoStart(true);
-    };
-
-    // 첫 재생이면 0초부터, 이후는 10초부터 시작
-    video.currentTime = isFirstPlay ? 0 : capTime;
-    video.play().catch((error) => console.error("Play failed:", error));
-
-    // 이벤트 리스너 추가
-    video.addEventListener("ended", handleEnded);
-    video.addEventListener("play", handlePlay);
-
-    // 클린업: 이벤트 리스너 제거
-    return () => {
-      video.removeEventListener("ended", handleEnded);
-      video.removeEventListener("play", handlePlay);
-    };
-  }, [activeSection, isFirstPlay]); // activeSection 또는 isFirstPlay 변경 시 실행
 
   return (
     <>
@@ -126,7 +85,6 @@ export const SectionMobile = () => {
         <link rel="preload" href="/mobile/char_RoadMap2.webm" as="video" type="video/webm"/>
         <link rel="preload" href="/mobile/char_RoadMap3.webm" as="video" type="video/webm"/>
         <link rel="preload" href="/mobile/char_RoadMap4.webm" as="video" type="video/webm"/>
-        <link rel="preload" href="/mobile/bg_basic.png" as="image"/>
       </Head>
       <div className="w-full h-full">
         <Header activeSection={sections[activeSection]} setActiveSection={setActiveSection}/>
@@ -149,6 +107,8 @@ export const SectionMobile = () => {
             sections={sections}
             activeSection={activeSection}
             setActiveSection={setActiveSection}
+            videoRef={videoRef}
+            setIsFirstPlay={setIsFirstPlay}
           />
           <SectionContents
             sections={sections}

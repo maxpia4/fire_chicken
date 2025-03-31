@@ -1,9 +1,10 @@
 "use client";
 
 import { twMerge } from "tailwind-merge";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
+import {InfiniteVideo} from "@/app/components/mobile/InfiniteVideo";
 
-export const Title = ({sections, activeSection, setActiveSection}:any) => {
+export const Title = ({sections, activeSection, setActiveSection, videoRef, setIsFirstPlay}:any) => {
 
   const [activeTop, setActiveTop] = useState<string>("top-[10%]")
 
@@ -56,13 +57,21 @@ export const Title = ({sections, activeSection, setActiveSection}:any) => {
             className={twMerge(
               "flex items-center justify-center h-[61px] transition-all duration-1000 ease-in-out",
               activeSection === sections.indexOf("Home")
-                ? "bg-[#990000] w-[70%] rounded-[4px]"
+                // ? "bg-[#990000] w-[70%] rounded-[4px]"
+                ? "w-[70%] rounded-[4px]"
                 : "bg-black w-full"
             )}
           >
             <img
               src={`/mobile/title_${config.name}.png`}
               className={twMerge("h-[32%]")}
+            />
+            <InfiniteVideo
+              src={`/mobile/effect_fire.webm`}
+              type={"video/webm"}
+              loopTime = {3}
+              activeSection = {activeSection}
+              className ={`absolute z-10 w-[85%] h-full object-fill lg:block ${activeSection !== sections.indexOf("Home") && "hidden"}`}
             />
           </div>
         </div>
