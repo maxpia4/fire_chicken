@@ -26,7 +26,7 @@ const Section2Contents = () => (
       alt={"HowToGet_contents"}/>
   </div>
 );
-const Section3Contents = (showTokenomics) => (
+const Section3Contents = (showTokenomics:any) => (
   <div className={twMerge("absolute w-full top-[calc(30%)] flex items-center justify-center",
     showTokenomics ? "animate-grow" : "hidden")}>
     <Image
@@ -38,7 +38,7 @@ const Section3Contents = (showTokenomics) => (
       alt={"Tokenomics_contents"}/>
   </div>
 );
-const Section4Contents = (isLoadMapClicked,setIsLoadMapClicked):any => {
+const Section4Contents = (isLoadMapClicked:any,setIsLoadMapClicked:any) => {
 
   const charChicken = () => (
     <div
@@ -128,12 +128,13 @@ const Section4Contents = (isLoadMapClicked,setIsLoadMapClicked):any => {
         style={{width: "auto", height: "115%"}}
         className="mx-auto"
         src={`/mobile/RoadMap02_contents.png`}
+        alt={"RoadMap02_contents"}
       />
     </div>
   );
 
   return (
-    <div className="h-[140%] bg-black">
+    <div className="h-[150%] bg-black">
       {/*배경*/}
       <video
         loop

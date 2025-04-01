@@ -58,8 +58,7 @@ export const Header = ({activeSection, setActiveSection}:any) => {
         className={twMerge(
           "flex flex-row justify-center sm:justify-between items-center sm:bg-[#611111] backdrop-blur-xl text-white",
           "h-[10%] max-h-[11%] sm:h-[90px] px-5 py-2 fixed top-0 left-0 w-full z-50",
-          "lg:h-16 lg:px-64 sm:relative transition-all duration-1000 ease-in-out",
-          activeSection !== "Home" ? "bg-[#9C0404]" : "bg-[#241E1E] "
+          "lg:h-16 lg:px-64 sm:relative transition-all duration-1000 ease-in-out bg-[#9C0404]",
         )}
       >
         <a

@@ -7,7 +7,6 @@ import {Title} from "@/app/components/mobile/Title";
 import {FloatingBtn} from "@/app/components/mobile/FloatingBtn";
 import {SectionContents} from "@/app/components/mobile/SectionContents";
 import Head from "next/head";
-import {twMerge} from "tailwind-merge";
 
 export const SectionMobile = () => {
   const sections = ["Home", "About", "HowToGet", "Tokenomics", "Roadmap"];
