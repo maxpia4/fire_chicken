@@ -3,13 +3,13 @@
 import Image from "next/image";
 import { useRef, useEffect } from "react";
 
-const needBG: number[] = [1, 2, 3, 4, 5];
+const needBG: number[] = [1, 2, 3, 5];
 const needMBG: number[] = [];
-const videoSection: number[] = [1];
+const videoSection: number[] = [1,5];
 
 export const SectionContainer = ({
   children,
-  sectionIdx = 1,
+  sectionIdx,
   className,
 }: {
   children: React.ReactNode;
@@ -20,7 +20,7 @@ export const SectionContainer = ({
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || !videoSection.includes(sectionIdx)) return;
+    if (!video || !videoSection.includes(sectionIdx ?? 0)) return;
 
     let isFirstPlay = true;
 
@@ -55,32 +55,25 @@ export const SectionContainer = ({
       id={`section-${sectionIdx}`}
       className={`text-[#F90C02] ${
         sectionIdx === 1 ? "h-auto" : "min-h-full"
-      } font-medium relative flex flex-1 flex-col w-dvw lg:w-full lg:h-[calc(100dvh-3.9rem)] lg:snap-center ${
+      } font-medium relative flex flex-1 flex-col w-dvw lg:w-full lg:h-[calc(100dvh)] lg:snap-center ${
         sectionIdx > 10 ? "lg:overflow-y-scroll" : "lg:overflow-hidden"
       } ${className}`}
     >
       {children}
-      {sectionIdx === 4 ? (
-        <div className="bg-[#020417] absolute inset-0 -z-10 grid h-screen w-screen grid-cols-10 grid-rows-10">
-          {Array.from({ length: 100 }).map((_, idx) => (
-            <img key={idx} src="/fire_chicken_char.png" alt="Fire Chicken" />
-          ))}
-        </div>
-      ) : (
         <>
           {sectionIdx && needBG.includes(sectionIdx) ? (
             <>
               {videoSection.includes(sectionIdx) ? (
                 <video
-                  ref={videoRef}
+                  loop
                   autoPlay
                   muted
                   playsInline
-                  className="lg:absolute inset-0 -z-10 w-full lg:block"
+                  className="lg:absolute -z-10 w-full"
                 >
                   <source
-                    src={`/section${sectionIdx}-bg_animation.mp4`}
-                    type="video/mp4"
+                    src={`/section${sectionIdx}-bg_animation.webm`}
+                    type="video/webm"
                   />
                 </video>
               ) : (
@@ -88,7 +81,7 @@ export const SectionContainer = ({
                   <Image
                     className="absolute inset-0 -z-10 lg:block hidden"
                     src={`/section${sectionIdx}-bg.${
-                      sectionIdx === 5 ? "png" : "webp"
+                      sectionIdx === 5 || sectionIdx === 2 ? "png" : "webp"
                     }`}
                     alt={`background image for section ${sectionIdx}`}
                     style={{ objectFit: "cover", objectPosition: "top" }}
