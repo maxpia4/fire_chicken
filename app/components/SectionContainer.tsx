@@ -95,7 +95,6 @@ export const SectionContainer = ({
             <div className="absolute inset-0 -z-10 bg-[#020417] block lg:hidden"></div>
           )}
         </>
-      )}
     </section>
   );
 };

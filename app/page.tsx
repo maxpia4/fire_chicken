@@ -4,9 +4,6 @@ import {Section3} from "@/app/section/Section3";
 import {Section4} from "@/app/section/Section4";
 import {Section5} from "@/app/section/Section5";
 import {SectionMobile} from "@/app/section/SectionMobile";
-import Section_story from "@/app/section/Section_story";
-import Section_story2 from "@/app/section/Section_story2";
-import Section_story3 from "@/app/section/Section_story3";
 import React from "react";
 
 export default function Home() {
@@ -20,9 +17,6 @@ export default function Home() {
         <Section3 />
         <Section4 />
         <Section5 />
-        <Section_story/>
-        <Section_story2/>
-        <Section_story3/>
       </main>
 
       {/*모바일*/}
