@@ -8,6 +8,7 @@ export const FloatingBtn = ({
                               activeSection,
                               setActiveSection,
                               setIsFirstPlay,
+                              scrollToTop,
                             } : any) => {
 
   return (
@@ -22,6 +23,7 @@ export const FloatingBtn = ({
                 onClick={() => {
                   setActiveSection(index);
                   setIsFirstPlay(true);
+                  scrollToTop();
                 }}
                 key={section}
                 src={`/mobile/btn_${section}.png`}

@@ -55,8 +55,8 @@ export const SectionContainer = ({
       id={`section-${sectionIdx}`}
       className={`text-[#F90C02] ${
         sectionIdx === 1 ? "h-auto" : "min-h-full"
-      } font-medium relative flex flex-1 flex-col w-dvw lg:w-full lg:h-[calc(100dvh)] lg:snap-center ${
-        (sectionIdx ?? 0) > 10 ? "lg:overflow-y-scroll" : "lg:overflow-hidden"
+      } font-medium relative flex flex-1 flex-col w-dvw sm:w-full sm:h-[calc(100dvh)] sm:snap-center ${
+        (sectionIdx ?? 0) > 10 ? "sm:overflow-y-scroll" : "sm:overflow-hidden"
       } ${className}`}
     >
       {children}
@@ -69,7 +69,7 @@ export const SectionContainer = ({
                   autoPlay
                   muted
                   playsInline
-                  className="absolute inset-0 -z-10 w-full h-full object-cover"
+                  className="sm:absolute inset-0 w-full h-full object-cover -z-10"
                 >
                   <source
                     src={`/section${sectionIdx}-bg_animation.webm`}
@@ -79,7 +79,7 @@ export const SectionContainer = ({
               ) : (
                 <>
                   <Image
-                    className="absolute inset-0 -z-10 lg:block hidden"
+                    className="absolute inset-0 -z-10 sm:block hidden"
                     src={`/section${sectionIdx}-bg.${
                       sectionIdx === 5 || sectionIdx === 2 ? "png" : "webp"
                     }`}

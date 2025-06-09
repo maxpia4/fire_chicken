@@ -46,7 +46,7 @@ export const Header = ({activeSection, setActiveSection}:any) => {
             unoptimized
           />
         </a>
-        <nav className={twMerge("desktop", "flex-1")}>
+        <nav className={twMerge("sm:block", "flex-1", "hidden")}>
           <ul className="flex justify-end gap-32">
             {NAV_LIST.map(({ label, url }, i) => (
               <li

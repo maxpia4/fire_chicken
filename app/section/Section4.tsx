@@ -105,7 +105,7 @@ export const Section4 = () => {
         {/* Flex 컨테이너를 추가하여 이미지 버튼을 중앙 정렬 */}
         <div 
           ref={containerRef}
-          className={`absolute bottom-24 left-0 right-0 flex justify-center items-center z-20 ${
+          className={`absolute bottom-10 left-0 right-0 flex justify-center items-center z-20 ${
             isMovingDown ? 'transform translate-y-[200vh] transition-all duration-500 ease-in' : ''
           }`}
         >
