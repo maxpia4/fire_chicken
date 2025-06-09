@@ -1,67 +1,71 @@
+"use client"
+
 import { twMerge } from "tailwind-merge";
 import { SectionContainer } from "@/app/components/SectionContainer";
+import { useState } from "react";
 
-export const Section3 = () => (
+// Uniswap iframe 컴포넌트
+const UniswapIframe = () => {
+  return (
+    <iframe 
+      src="https://app.uniswap.org/#/swap?outputCurrency=0x6982508145454ce325ddbe47a25d4ec3d2311933" 
+      height="660px" 
+      width="100%" 
+      style={{
+        border: 0,
+        margin: '0 auto',
+        display: 'block',
+        borderRadius: '10px',
+        maxWidth: '600px',
+        minWidth: '300px',
+      }}
+    />
+  );
+};
+
+
+
+const handleSwapClick = () => {
+  window.open("https://raydium.io/swap/?inputMint=93eQWWgcaSMriusbjR3v3e2Me5dM17JJbPmyxVKPKZXZ&outputMint=sol", "_blank");
+};
+
+export const Section3 = () => {
+  const [showSwapUI, setShowSwapUI] = useState(false);
+  
+  return (
   <SectionContainer sectionIdx={3}>
-    <div className="flex flex-1 flex-col lg:flex-row items-center justify-center px-10">
-      {/* 모바일에서만 이미지 표시 */}
-      <img
-        className={twMerge("w-[500px] block lg:hidden")}
-        src="/fire_chicken_char.png"
-        alt="Fire Chicken"
-      />
-      <div className="flex-1 p-8 rounded-lg shadow-lg bg-black bg-opacity-70 text-white font-bold mb-52 lg:mb-0">
-        {/* 반응형 텍스트 크기 적용 */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6">
-          How to Get Firechicken Coin (How to Buy)
-        </h1>
+    <div className="flex flex-1 flex-col items-center justify-center px-[10%]">
+      <div className="w-full flex justify-center items-center mt-20 space-x-10">
 
-        <div className="space-y-8">
-          <div className="p-2 rounded-lg shadow-md">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">
-              Step 1: Create a Phantom Wallet
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl leading-relaxed">
-              Firechicken Coin is a Solana-based token, so you need to create a Solana-compatible wallet.
-            </p>
+        {/* Raydium Button 이미지 - 클릭 가능하게 만들기 */}
+        <div className="cursor-pointer" onClick={handleSwapClick}>
+          <img
+            className="max-w-[100%] h-auto"
+            src="/section3-contents_raydium-btn.png"
+            alt="Raydium Button"
+          />
+        </div>
+
+        <div className="flex flex-col items-center justify-center space-y-10">
+          {/* About Firechicken Coin 이미지 */}
+          <div className="w-full flex justify-center">
+            <img
+              className="max-w-[50%] h-auto"
+              src="/About Firechicken Coin.png"
+              alt="About Firechicken Coin"
+            />
           </div>
-
-          <div className="p-2 rounded-lg shadow-md">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">
-              Step 2: Buy Solana (SOL)
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl leading-relaxed">
-              Purchase Solana from a cryptocurrency exchange.
-            </p>
-          </div>
-
-          <div className="p-2 rounded-lg shadow-md">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">
-              Step 3: Visit Raydium
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl leading-relaxed">
-              Head to <a href="https://raydium.io" className="hover:underline text-red-600">https://raydium.io</a> and
-              search for Firechicken Token.
-            </p>
-          </div>
-
-          <div className="p-2 rounded-lg shadow-md">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">
-              Step 4: Swap SOL for Firechicken Coin
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl leading-relaxed">
-              Register your Phantom Wallet on Raydium and perform the token swap.
-            </p>
+          {/* Section3 Contents 이미지 */}
+          <div className="w-full flex justify-center">
+            <img
+              className="max-w-[85%] h-auto"
+              src="/section3-contents.png"
+              alt="Section 3 Contents"
+            />
           </div>
         </div>
       </div>
-
-      {/* 데스크탑에서만 이미지 표시 */}
-      <img
-        className={twMerge("w-[500px] lg:block hidden")}
-        src="/fire_chicken_char.png"
-        alt="Fire Chicken"
-      />
     </div>
   </SectionContainer>
 );
+};

@@ -5,7 +5,7 @@ import { useRef, useEffect } from "react";
 
 const needBG: number[] = [1, 2, 3, 5];
 const needMBG: number[] = [];
-const videoSection: number[] = [1,5];
+const videoSection: number[] = [1, 3, 5];
 
 export const SectionContainer = ({
   children,
@@ -56,7 +56,7 @@ export const SectionContainer = ({
       className={`text-[#F90C02] ${
         sectionIdx === 1 ? "h-auto" : "min-h-full"
       } font-medium relative flex flex-1 flex-col w-dvw lg:w-full lg:h-[calc(100dvh)] lg:snap-center ${
-        sectionIdx > 10 ? "lg:overflow-y-scroll" : "lg:overflow-hidden"
+        (sectionIdx ?? 0) > 10 ? "lg:overflow-y-scroll" : "lg:overflow-hidden"
       } ${className}`}
     >
       {children}
@@ -69,7 +69,7 @@ export const SectionContainer = ({
                   autoPlay
                   muted
                   playsInline
-                  className="lg:absolute -z-10 w-full"
+                  className="absolute inset-0 -z-10 w-full h-full object-cover"
                 >
                   <source
                     src={`/section${sectionIdx}-bg_animation.webm`}

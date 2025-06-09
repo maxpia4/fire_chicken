@@ -121,22 +121,24 @@ export const Section4 = () => {
             >
               {/* 말풍선 - 위치 조정 */}
               {isBubbleVisible && (
-                <div className="absolute -top-10 inset-x-0 flex justify-center">
-                  <div className="bg-white text-black px-5 py-2 rounded-xl font-extrabold text-lg tracking-wide animate-bounce shadow-lg border-2 border-gray-200 relative">
-                    Click me!
-                    {/* 말풍선 꼬리 */}
-                    <div className="absolute bottom-[-8px] left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[8px] border-l-transparent border-t-[8px] border-t-white border-r-[8px] border-r-transparent"></div>
+                <>
+                  <div className="absolute -top-10 inset-x-0 flex justify-center">
+                    <div className="bg-white text-black px-5 py-2 rounded-xl font-extrabold text-lg tracking-wide animate-bounce shadow-lg border-2 border-gray-200 relative">
+                      Click me!
+                      {/* 말풍선 꼬리 */}
+                      <div className="absolute bottom-[-8px] left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[8px] border-l-transparent border-t-[8px] border-t-white border-r-[8px] border-r-transparent"></div>
+                    </div>
                   </div>
-                </div>
+                
+                  <Image 
+                    src="/fire_chicken_tokenomics.png" 
+                    alt="Fire Chicken Tokenomics" 
+                    width={120} 
+                    height={120}
+                    className="transition-transform duration-300 hover:scale-105"
+                  />
+                </>
               )}
-              
-              <Image 
-                src="/fire_chicken_tokenomics.png" 
-                alt="Fire Chicken Tokenomics" 
-                width={120} 
-                height={120}
-                className="transition-transform duration-300 hover:scale-105"
-              />
             </div>
           )}
         </div>
